@@ -1,0 +1,68 @@
+#include<stdio.h> 
+
+struct node
+{
+	int info;
+	struct node *next;
+	struct node *prev;
+}
+
+
+struct node *head = NULL;
+struct node *last = NULL; 
+struct node *current = NULL; 
+
+int isEmpty()
+{
+	return head==NULL;
+}
+
+int length()
+{
+	int count=0;
+	struct node *current;
+	for(current = head; current != NULL; current = current->next){
+      count++;
+   }
+	
+   return count;
+}
+
+void display() 
+{
+   struct node *ptr = head;
+	
+     while(ptr != NULL) {        
+      printf("(%d,%d) ",ptr->key,ptr->data);
+      ptr = ptr->next;
+   }
+}
+
+void Reverse() {
+
+   struct node *ptr = last;
+	
+   while(ptr != NULL) {    
+      printf("(%d) ",ptr->data);
+      ptr = ptr ->prev;
+      
+   }
+	
+}
+
+void insertFirst(int data) {
+
+
+   struct node *link = (struct node*) malloc(sizeof(struct node));
+   link->data = data;
+	
+   if(isEmpty()) {
+	  
+      last = link;
+   } else {
+      head->prev = link;
+   }
+
+   link->next = head;
+   head = link;
+}
